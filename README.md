@@ -32,6 +32,7 @@ face = face_classifier.detectMultiScale(
 To draw the bounding box, use cv.rectangle():
 for (x, y, w, h) in face:
     cv.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 4)
+    img[y:y+h, x:x+w]=img[y:y+h, x:x+w]*0.75
 
 The image can then be displayed in a seperate window using cv.imshow():
 cv.imshow("window name", img)
@@ -41,3 +42,9 @@ cv.imshow("window name", img)
 Sources:
 https://www.datacamp.com/tutorial/face-detection-python-opencv
 https://docs.opencv.org/3.4/da/d60/tutorial_face_main.html
+
+
+
+Project Notes:
+* The classifier did not detect the face when half of it was covered with paper. (refer to test_facedect1.py)
+* When testing how much the face can be covered such that the classifier still recognizes it as a face, the classifier detected the nose and mouth as a face. One solution was to change the minSize from (40,40) to (200,200). (refer to test_facedect2.py)
