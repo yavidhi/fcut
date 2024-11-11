@@ -13,16 +13,16 @@ pip install opencv-python
 You can import the module in python using cv2:
 import cv2 as cv
 
+OpenCV has a pre-trained Haar Cascade classifier to detect faces:
+face_classifier = cv.CascadeClassifier(
+    cv.data.haarcascades + "haarcascade_frontalface_default.xml"
+)
+
 To store an image as a Mat, use cv.imread():
 img = cv.imread(file path)
 
 You may want to make the image grayscale for efficiency:
 img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-
-OpenCV has a pre-trained Haar Cascade classifier to detect faces:
-face_classifier = cv.CascadeClassifier(
-    cv.data.haarcascades + "haarcascade_frontalface_default.xml"
-)
 
 The classifier can be used to detect the bounding box of the face. The parameters below are used to improve accuracy:
 face = face_classifier.detectMultiScale(
